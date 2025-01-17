@@ -1,0 +1,7 @@
+smolagents==1.2.2
+litellm==1.58.0
+markdownify==0.14.1
+torch==2.5.1
+pandas==2.2.3
+streamlit==1.41.1
+google-generativeai==0.8.3
