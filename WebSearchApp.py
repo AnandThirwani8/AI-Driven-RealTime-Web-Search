@@ -11,6 +11,8 @@ import google.generativeai as genai
 from smolagents import CodeAgent, ManagedAgent, LiteLLMModel, tool, DuckDuckGoSearchTool
 
 #---------------------------------------------- Side Bar (Key) ----------------------------------------------
+st.set_page_config(page_title="Chat with Web Search", page_icon="🌐")
+
 # Create a sidebar for entering the Gemini API key.
 with st.sidebar:
     st.title("Enter your Gemini API Key here:")
@@ -18,6 +20,7 @@ gemini_api_key = st.sidebar.text_input("Gemini API Key", type="password")
 
 #---------------------------------------------- Define LLM ----------------------------------------------
 # Set up the language model using Gemini API.
+# if not gemini_api_key:
 model_name = "gemini-1.5-flash"
 model = LiteLLMModel(model_id=f"gemini/{model_name}", api_key = gemini_api_key)
 genai.configure(api_key = gemini_api_key)
@@ -73,7 +76,6 @@ def QnA_Web_Search(query):
 
 #---------------------------------------------- Chat UI ----------------------------------------------
 # Set up the web application interface.
-st.set_page_config(page_title="Chat with Web Search", page_icon="🌐")
 st.title("🌐 Chat with Web Search")
 st.caption("🚀 Powered by Google Gemini and HuggingFace SmolAgents")
 
@@ -93,7 +95,13 @@ if query := st.chat_input():
 
     # Generate response 
     with st.spinner("Thinking..."):
-        response = QnA_Web_Search(query)
+
+        if not gemini_api_key:
+            st.warning('Please enter your API key!', icon='⚠')
+            st.stop()
+        else:
+            response = QnA_Web_Search(query)
+
         msg = response
 
     # Add assistant response to chat history
