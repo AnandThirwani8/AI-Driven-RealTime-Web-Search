@@ -15,8 +15,24 @@ st.set_page_config(page_title="Chat with Web Search", page_icon="🌐")
 
 # Create a sidebar for entering the Gemini API key.
 with st.sidebar:
-    st.title("Enter your Gemini API Key here:")
-gemini_api_key = st.sidebar.text_input("Gemini API Key", type="password")
+    st.markdown("# Enter your Gemini API Key here:")
+    gemini_api_key = st.sidebar.text_input("Gemini API Key", type="password")
+    "[🔑 Get your Gemini API key](https://ai.google.dev/gemini-api/docs)"
+    "[👨‍💻 View the source code](https://github.com/AnandThirwani8/AI-Driven-RealTime-Web-Search/)"
+    "[🤝 Let's Connect](https://www.linkedin.com/in/anandthirwani/)"
+
+    st.markdown("---")
+    st.markdown("# About")
+    st.markdown(
+        "🚀 Demonstration of a multi-agent AI system 🤖 designed to answer factual questions by querying the internet. "
+        "❓ Ask anything factual, and watch the agents collaborate to find the best answer!"
+    )
+    st.markdown(
+        "This tool is a work in progress. "
+        "You can contribute to the project on [GitHub](https://github.com/AnandThirwani8/AI-Driven-RealTime-Web-Search/) "  
+        "with your feedback and suggestions💡"
+    )
+
 
 #---------------------------------------------- Define LLM ----------------------------------------------
 # Set up the language model using Gemini API.
